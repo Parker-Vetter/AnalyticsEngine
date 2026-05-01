@@ -43,3 +43,7 @@ def submit_kills(stat: schemas.StatSubmit, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(player)
     return {"player_id": player.player_id, "total_kills": player.total_kills}
+
+@app.post("/db/set_status/{new_status}")
+def set_db_status(new_status: bool):
+    USE_DB = new_status
